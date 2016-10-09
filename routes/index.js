@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var sha1 = require('sha1')
-var checkSignature = require("../common/utils.js").sign
-var parseString = require("../common/utils").parseString
+var checkSignature = require("../common/utils.js").sign;
+var msgHandler = require("../common/msgHandler.js");
 /* GET home page. */
 
 module.exports = function(app){
@@ -21,10 +20,9 @@ module.exports = function(app){
         formData+=data;
     });
     req.on("end",function(){
-      console.log(formData);
-      parseString(formData,function(err,result){
-        console.log(result)
-      });
+      msgHandler(formData,res)
     });
   });
+
+
 };
