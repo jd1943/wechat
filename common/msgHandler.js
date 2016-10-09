@@ -1,7 +1,7 @@
 /**
  * Created by jiang on 2016/10/9.
  */
-var parseString = require("../common/utils").parseString
+var parseString = require("../common/utils").parseString;
 
 function json2XmlString(msg) {
     var output = "<xml>";
@@ -64,7 +64,7 @@ module.exports = function (xmlStr, res) {
                     "CreateTime": Math.round(new Date().getTime() / 1000),
                     "MsgType": "text",
                     "Content": "不支持的格式"
-                });
+                },res);
             //case 'event':
             //    handleEventMsg(result, res);
             //    break;
