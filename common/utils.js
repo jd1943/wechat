@@ -1,5 +1,6 @@
 var utils = {}
 var sha1 = require('sha1')
+var xml2js = require('xml2js')
 
 utils.sign = function(req,res,next){
 	var q = req.query
@@ -23,6 +24,10 @@ utils.sign = function(req,res,next){
     res.send('err');
     console.log("wechat check failed!")
 	}
+}
+
+utils.parseString = function(xmlStr,callback){
+  xml2js.parseString(xmlStr, { explicitArray : false, ignoreAttrs : true }, callback);
 }
 
 module.exports = utils;

@@ -19,7 +19,10 @@ module.exports = function(app){
         formData+=data;
     });
     req.on("end",function(){
-    console.log(formData)
+      console.log(formData)
+      utils.xml2js.parseString(xmlStr,function(err,result){
+        console.log(result)
+      });
     });
   });
 };
