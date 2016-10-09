@@ -17,6 +17,7 @@ function json2XmlString(msg) {
 }
 
 function handleTextMsg(msg, res) {
+    console.log("handleTextMsg recive msg: "+ msg);
     var time = Math.round(new Date().getTime() / 1000);
     var output_msg = json2XmlString(
         {
