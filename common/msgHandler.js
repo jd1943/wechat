@@ -54,9 +54,9 @@ function handleLocationMst(msg, res) {
 module.exports = function (xmlStr, res) {
     console.log(xmlStr);
     parseString(xmlStr, function (err, msg) {
-        var result = msg.xml
+        var result = msg.xml;
         console.log(result);
-        switch (result.msgType) {
+        switch (result.MsgType) {
             case 'text':
                 console.log("text type msg");
                 handleTextMsg(result, res);
