@@ -12,6 +12,8 @@ module.exports = function(app){
   app.get('/wechat',function(req,res,next){
     checkSignature(req,res,next)
   });
+
+  checkSignature(req,res,next)
   app.post('/wechat',function(req,res,next){
     console.log(req.query)
     console.log(req.body)
