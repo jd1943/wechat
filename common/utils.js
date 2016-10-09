@@ -23,4 +23,4 @@ utils.sign = function(req,res,next){
 	}
 }
 
-modeule.exports = utils;
+module.exports = utils;
