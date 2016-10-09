@@ -5,6 +5,6 @@ var router = express.Router();
 
 module.exports = function(app){
   app.get('/', function(req, res, next) {
-    res.render('index', { title: '本域名出售，qq:780228437,email:jiangda1@foxmail.com' });
+    res.render('index', { title: '网站建设中，qq:780228437' });
   });
 };
