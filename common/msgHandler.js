@@ -16,8 +16,8 @@ function json2XmlString(msg) {
     return output
 }
 
-function handleTextMsg(err,msg, res) {
-    console.log("handleTextMsg recive msg: "+ msg);
+function handleTextMsg(msg, callback) {
+    console.log("handleTextMsg recive msg: " + msg.keys);
     var time = Math.round(new Date().getTime() / 1000);
     var output_msg = json2XmlString(
         {
@@ -29,15 +29,7 @@ function handleTextMsg(err,msg, res) {
         }
     );
     console.log(output_msg);
-    if (err) {
-        console.log("text parse failed!");
-        res.type('xml');
-        res.send(output_msg)
-    } else {
-        console.log(msg);
-        res.type('xml');
-        res.send(output_msg)
-    }
+    callback(output_msg)
 }
 
 function handleEventMsg(msg, res) {
@@ -60,7 +52,10 @@ module.exports = function (xmlStr, res) {
         switch (result.MsgType) {
             case 'text':
                 console.log("text type msg");
-                handleTextMsg(err,result, res);
+                handleTextMsg(result, function (output_msg) {
+                    res.type('xml');
+                    res.send(output_msg);
+                });
                 break;
             case 'event':
                 handleEventMsg(result, res);
