@@ -17,6 +17,12 @@ function json2XmlString(msg) {
 }
 
 function handleTextMsg(msg, res) {
+    var content = "";
+    if(msg.MsgType=="text") {
+        content = msg.Content
+    }else{
+        content = "不支持的数据类型"
+    }
     console.log("handleTextMsg recive msg: " + msg);
     var time = Math.round(new Date().getTime() / 1000);
     var output_msg = json2XmlString(
@@ -25,7 +31,7 @@ function handleTextMsg(msg, res) {
             "FromUserName": msg.ToUserName,
             "CreateTime": time,
             "MsgType": "text",
-            "Content": msg.Content
+            "Content": content
         }
     );
     console.log(output_msg);
@@ -58,13 +64,7 @@ module.exports = function (xmlStr, res) {
                 break;
             default :
                 console.log("undefined msg!");
-                handleTextMsg({
-                    "ToUserName": result.FromUserName,
-                    "FromUserName": result.ToUserName,
-                    "CreateTime": Math.round(new Date().getTime() / 1000),
-                    "MsgType": "text",
-                    "Content": "不支持的格式"
-                },res);
+                handleTextMsg(result,res);
             //case 'event':
             //    handleEventMsg(result, res);
             //    break;
