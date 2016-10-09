@@ -14,8 +14,12 @@ module.exports = function(app){
   });
 
   app.post('/wechat',function(req,res,next){
-    checkSignature(req,res,next)
-    console.log(req)
-    console.log(req.body)
+    var formData="";
+    req.on("data",function(data){
+        formData+=data;
+    });
+    req.on("end",function(){
+    console.log(formData)
+    });
   });
 };
