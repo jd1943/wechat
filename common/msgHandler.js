@@ -20,7 +20,7 @@ function handleTextMsg(msg, res) {
     var time = Math.round(new Date().getTime() / 1000);
     var output_msg = json2XmlString(
         {
-            "ToUserName": msg.fromUser,
+            "ToUserName": msg.FromUserName,
             "FromUserName": msg.ToUserName,
             "CreateTime": time,
             "MsgType": "text",
