@@ -5,11 +5,11 @@ var parseString = require("../common/utils").parseString
 
 function json2XmlString(msg) {
     var output = "<xml>";
-    for (var each in msg.keys) {
+    for (var each in msg) {
         if (each == "CreateTime") {
-            output += "<" + each + ">" + msg.each + "</" + each + ">"
+            output += "<" + each + ">" + msg[each] + "</" + each + ">"
         } else {
-            output += "<" + each + "><![CDATA[" + msg.each + "]]></" + each + ">"
+            output += "<" + each + "><![CDATA[" + msg[each] + "]]></" + each + ">"
         }
     }
     output += "</xml>";
@@ -17,7 +17,7 @@ function json2XmlString(msg) {
 }
 
 function handleTextMsg(msg, callback) {
-    console.log("handleTextMsg recive msg: " + msg.keys);
+    console.log("handleTextMsg recive msg: " + msg);
     var time = Math.round(new Date().getTime() / 1000);
     var output_msg = json2XmlString(
         {
