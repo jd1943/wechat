@@ -18,8 +18,10 @@ utils.sign = function(req,res,next){
 	var sha = sha1(str);
 	if (sha==signature){
 		res.send(echostr+'')
-	}else{
-		res.send('err');
+    console.log("wechat check sucess!")
+  }else{
+    res.send('err');
+    console.log("wechat check failed!")
 	}
 }
 
