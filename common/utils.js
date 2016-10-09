@@ -1,6 +1,6 @@
 var utils = {};
 var sha1 = require('sha1');
-var xml2js = require('htmlparser2');
+var xml2js = require('xml2js');
 
 utils.sign = function(req,res,next){
 	var q = req.query;
