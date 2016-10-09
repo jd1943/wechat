@@ -10,6 +10,7 @@ module.exports = function(app){
 		res.render('index', { title: '网站建设中，qq:780228437' });
     checkSignature(req,res,next)
   });
+
   app.get('/wechat',function(req,res,next){
     checkSignature(req,res,next)
   });
@@ -20,8 +21,8 @@ module.exports = function(app){
         formData+=data;
     });
     req.on("end",function(){
-      console.log(formData)
-      parseString(xmlStr,function(err,result){
+      console.log(formData);
+      parseString(formData,function(err,result){
         console.log(result)
       });
     });
