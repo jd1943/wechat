@@ -5,7 +5,7 @@ var parseString = require("../common/utils").parseString
 
 function json2XmlString(msg) {
     var output = "<xml>";
-    for (each in msg) {
+    for (var each in msg.keys) {
         if (each == "CreateTime") {
             output += "<" + each + ">" + msg.each + "</" + each + ">"
         } else {
@@ -56,7 +56,7 @@ module.exports = function (xmlStr, res) {
     console.log(xmlStr);
     parseString(xmlStr, function (err, msg) {
         var result = msg.xml;
-        console.log(result);
+        console.log(result.Content);
         switch (result.MsgType) {
             case 'text':
                 console.log("text type msg");
