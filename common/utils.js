@@ -1,12 +1,13 @@
+var utils = {}
 var sha1 = require('sha1')
 
-modeule.exports = function(req,res,next){
+utils.sign = function(req,res,next){
 	var q = req.query
 	console.log(q)
 	var signature = q.signature; //微信加密签名
-  var nonce = q.nonce; //随机数
-  var timestamp = q.timestamp; //时间戳
-  var echostr = q.echostr; //随机字符串
+  	var nonce = q.nonce; //随机数
+  	var timestamp = q.timestamp; //时间戳
+  	var echostr = q.echostr; //随机字符串
 	var token="jiangdatoken"
 	/*
     	1）将token、timestamp、nonce三个参数进行字典序排序
@@ -21,3 +22,5 @@ modeule.exports = function(req,res,next){
 		res.send('err');
 	}
 }
+
+modeule.exports = utils;
