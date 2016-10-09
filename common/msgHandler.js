@@ -16,7 +16,7 @@ function json2XmlString(msg) {
     return output
 }
 
-function handleTextMsg(msg, callback) {
+function handleTextMsg(msg, res) {
     console.log("handleTextMsg recive msg: " + msg);
     var time = Math.round(new Date().getTime() / 1000);
     var output_msg = json2XmlString(
@@ -29,7 +29,8 @@ function handleTextMsg(msg, callback) {
         }
     );
     console.log(output_msg);
-    callback(output_msg)
+    res.type('xml');
+    res.send(output_msg);
 }
 
 function handleEventMsg(msg, res) {
@@ -52,20 +53,27 @@ module.exports = function (xmlStr, res) {
         switch (result.MsgType) {
             case 'text':
                 console.log("text type msg");
-                handleTextMsg(result, function (output_msg) {
-                    res.type('xml');
-                    res.send(output_msg);
+                handleTextMsg(result, res);
+                break;
+            default :
+                console.log("undefined msg!");
+                handleTextMsg({
+                    "ToUserName": result.FromUserName,
+                    "FromUserName": result.ToUserName,
+                    "CreateTime": Math.round(new Date().getTime() / 1000),
+                    "MsgType": "text",
+                    "Content": "不支持的格式"
                 });
-                break;
-            case 'event':
-                handleEventMsg(result, res);
-                break;
-            case 'image':
-                handleImageMsg(result, res);
-                break;
-            case 'location':
-                handleLocationMst(result, res);
-                break
+            //case 'event':
+            //    handleEventMsg(result, res);
+            //    break;
+            //case 'image':
+            //    handleImageMsg(result, res);
+            //    break;
+            //case 'location':
+            //    handleLocationMst(result, res);
+            //    break;
+
         }
     });
 };
