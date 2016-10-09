@@ -1,10 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var sha1 = require('sha1')
+var checkSignature = require("./utils/checkSignature.js")
 
 /* GET home page. */
 
 module.exports = function(app){
   app.get('/', function(req, res, next) {
-    res.render('index', { title: '网站建设中，qq:780228437' });
+	if (! ("nonce" in req.query)){
+		res.render('index', { title: '网站建设中，qq:780228437' });
+	}else{
+    checkSignature(req,res,next)
+  }
   });
 };
