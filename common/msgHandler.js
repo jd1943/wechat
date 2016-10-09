@@ -27,6 +27,7 @@ function handleTextMsg(msg, res) {
             "Content": msg.Content
         }
     );
+    console.log(output_msg);
     if (err) {
         console.log("text parse failed!");
         res.type('xml');
@@ -53,6 +54,7 @@ function handleLocationMst(msg, res) {
 module.exports = function (xmlStr, res) {
     console.log(xmlStr);
     parseString(xmlStr, function (err, result) {
+        console.log(result);
         switch (result.msgType) {
             case 'text':
                 handleTextMsg(result, res);
