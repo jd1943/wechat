@@ -31,6 +31,7 @@ function handleTextMsg(msg, res) {
     console.log(output_msg);
     res.type('xml');
     res.send(output_msg);
+    res.end();
 }
 
 function handleEventMsg(msg, res) {

@@ -14,7 +14,7 @@ module.exports = function(app){
     checkSignature(req,res,next)
   });
 
-  app.post('/wechat',function(req,res,next){
+  app.post('/wechat',function(req,res){
     var formData="";
     req.on("data",function(data){
         formData+=data;
