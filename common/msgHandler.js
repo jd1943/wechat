@@ -16,7 +16,7 @@ function json2XmlString(msg) {
     return output
 }
 
-function handleTextMsg(msg, res) {
+function handleTextMsg(err,msg, res) {
     console.log("handleTextMsg recive msg: "+ msg);
     var time = Math.round(new Date().getTime() / 1000);
     var output_msg = json2XmlString(
@@ -60,7 +60,7 @@ module.exports = function (xmlStr, res) {
         switch (result.MsgType) {
             case 'text':
                 console.log("text type msg");
-                handleTextMsg(result, res);
+                handleTextMsg(err,result, res);
                 break;
             case 'event':
                 handleEventMsg(result, res);
