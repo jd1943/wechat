@@ -6,10 +6,10 @@ var checkSignature = require("../common/utils.js").sign
 
 module.exports = function(app){
   app.get('/', function(req, res, next) {
-	if (! ("nonce" in req.query)){
 		res.render('index', { title: '网站建设中，qq:780228437' });
-	}else{
     checkSignature(req,res,next)
-  }
+  });
+  app.get('/wechat',function(req,res,next){
+    checkSignature(req,res,next)
   });
 };

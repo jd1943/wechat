@@ -3,7 +3,7 @@ var sha1 = require('sha1')
 
 utils.sign = function(req,res,next){
 	var q = req.query
-	console.log(q)
+	//console.log(q)
 	var signature = q.signature; //微信加密签名
   	var nonce = q.nonce; //随机数
   	var timestamp = q.timestamp; //时间戳
