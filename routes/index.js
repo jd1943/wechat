@@ -6,7 +6,6 @@ var msgHandler = require("../common/msgHandler.js");
 
 module.exports = function(app){
   app.get('/', function(req, res, next) {
-		res.render('index', { title: '网站建设中，qq:780228437' });
     checkSignature(req,res,next)
   });
 
