@@ -6,7 +6,7 @@ var msgHandler = require("../common/msgHandler.js");
 
 module.exports = function(app){
   app.get('/', function(req, res, next) {
-    checkSignature(req,res,next)
+    res.render('index',{title:"网站开发中,qq:780228437"})
   });
 
   app.get('/wechat',function(req,res,next){
